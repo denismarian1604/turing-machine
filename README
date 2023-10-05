@@ -1,4 +1,4 @@
-Fisierele din care vom citi sunt "tema1.in" respectiv "tema1.out" prin intermediul variabilelor FILE* read, respectiv afisare.
+Fisierele din care vom citi sunt "turing.in" respectiv "turing.out", in care vom afisa, prin intermediul variabilelor FILE* read, respectiv afisare.
 Sirul de caractere OPS contine operatiile care se vor executa in momentul in care sunt intalnite si anume EXECUTE, UNDO, REDO, SHOW, SHOW_CURRENT.
 
 Am declarat urmatoarele tipuri de date :
