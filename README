@@ -1,0 +1,39 @@
+Fisierele din care vom citi sunt "tema1.in" respectiv "tema1.out" prin intermediul variabilelor FILE* read, respectiv afisare.
+Sirul de caractere OPS contine operatiile care se vor executa in momentul in care sunt intalnite si anume EXECUTE, UNDO, REDO, SHOW, SHOW_CURRENT.
+
+Am declarat urmatoarele tipuri de date :
+
+TCelula/*TLista -> tip de date pentru o celula dintr-o lista simplu inlantuita/un pointer catre o lista simplu inlantuita.
+		-> tipul de date contine ca informatie utila un char* si celula urmatoare de acelasi tip, ca pointer
+		-> de acest tip de date ma voi folosi pentru implementarea cozii in care voi retine operatiile de executat in ordine
+
+TCelula2/*TLista2 -> tip de date pentru o celula dintr-o lista dublu inlantuita/un pointer la o lsita dublu inlantuita
+		  -> tipul de date contine ca informatie utila un char(un singur caracter) si celula urmatoare din lista de acelasi tip, ca pointer
+		  -> de acest tip de date ma voi folosi pentru implementare listei din banda
+
+TCoada -> tip de date pentru celula care retine inceputul si sfarsitul unei cozi
+       -> tipul de date contine ca informatii inceputul si sfarsitul cozii
+       -> de acest tip de date ma folosesc pentru a implementa efectiv coada de operatii cu celule de tipul TLista
+
+TBanda -> tip de date pentru banda de implementat
+       -> tipul de date contine ca informatii o lista de tipul TLista2 si o celula curenta din lista de acelasi tip
+       -> de acest tip de date ma folosesc pentru a implementa banda
+
+TUR -> tip de date pentru a implementa stivele UNDO si REDO ( TU(Undo)R(Redo) )
+    -> tipul de date contine ca informatie utila un pointer la o celula de tipul TLista2 din banda, respectiv o celula urmatoare din stiva de acelasi tip
+    -> de acest tip de date ma folosesc pentru a implementa stivele UNDO si REDo
+
+Dupa initializarile necesare(banda, coada de operatii, stivele UNDO si REDO), citesc din fisierul de intrare "tema1.in" numarul de operatii, iar apoi incep sa citesc operatiile propriuzise din fisier.
+Cat timp operatia citita nu se gaseste in sirul OPS, inseamna ca operatia nu trebuie executata cand este intalnita, iar in acest caz o punem in coada de operatii si asteptam citirea unei operatii de EXECUTE.
+
+Cand citim operatia de EXECUTE, apelam subprogramul de executare si executam prima operatie corespunzatoare din coada de operatii. Daca operatia este de MOVE_LEFT/MOVE_RIGHT atunci se va pune in stiva de UNDO.
+Daca se apeleaza operatiile de SHOW/SHOW_CURRENT se executa subprogramele adecvate.
+
+Daca se apeleaza operatia de UNDO, se muta pozitia curenta a degetului la pointerul din varful stivei de UNDO, iar apoi pozitia curenta a degetului se pune in stiva de REDO.
+Daca se apeleaza operatia de REDO, se muta pozitia curenta a degetului la pointerul din varful stivei de REDO, iar apoi se pune in varful stivei de UNDO pozitia curenta a degetului.
+
+Dupa finalizarea executiei programului, se elibereaza pointer-ul in care retinem operatia, coada, stivele UNDO si REDO, lista din banda, banda, iar apoi se inchid fisierele de citire/scriere.
+
+Total: 100.0/100
+Valgrind: 20/20
+ 
